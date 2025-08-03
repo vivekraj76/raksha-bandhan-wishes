@@ -39,7 +39,7 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.6);
             overflow: hidden;
             display: flex;
-            background: url('background.gif') no-repeat center center/cover; 
+            background: url('background.gif') no-repeat center center/cover;
         }
 
         #frame-content {
@@ -50,17 +50,17 @@
         }
         #frame-content::-webkit-scrollbar { display: none; }
 
-        .container { 
-            width: 100%; 
+        .container {
+            width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; 
+            justify-content: flex-start;
             align-items: center;
             text-align: center;
-            padding-top: 50vh; 
+            padding-top: 50vh;
          }
-        
+
         /* --- FIREWORK ANIMATION --- */
         #fireworks-container {
             position: absolute;
@@ -90,7 +90,7 @@
 
         .firework::before {
             content: ''; position: absolute; left: 50%; top: 100%;
-            width: 100%; height: 20px; 
+            width: 100%; height: 20px;
             background: linear-gradient(to top, gold, transparent);
             transform: translateX(-50%);
         }
@@ -114,7 +114,7 @@
             animation: move-particle 1s ease-out infinite;
             animation-delay: calc(var(--duration, 3s) + var(--delay, 0s) - 0.2s);
         }
-        
+
         @keyframes move-particle {
             0% { transform: rotate(var(--angle)) translateY(0); opacity: 1; }
             100% { transform: rotate(var(--angle)) translateY(100px); opacity: 0; }
@@ -155,24 +155,25 @@
         #greetingMessage { font-size: clamp(1rem, 4vw, 1.2rem); line-height: 1.7; font-weight: bold; }
         #shareBtn {
             display: none;
-            margin-top: 25px; 
+            margin-top: 25px;
         }
 
-        /* (NEW) Ad Container Style */
+        /* Ad Container Style */
         #ad-container-bottom {
             position: absolute;
-            bottom: 10px; /* नीचे से थोड़ी जगह */
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 468px; /* आपके अनुरोध के अनुसार */
-            height: 60px; /* आपके अनुरोध के अनुसार */
-            z-index: 100; /* ताकि यह सबसे ऊपर दिखे */
+            width: 468px;
+            max-width: 95%; /* यह सुनिश्चित करेगा कि विज्ञापन स्क्रीन से बाहर न जाए */
+            height: 60px;
+            z-index: 100;
             text-align: center;
         }
     </style>
 </head>
 <body>
-    
+
     <div id="video-animation-frame">
         <div id="frame-content">
             <div id="fireworks-container"></div>
@@ -197,7 +198,7 @@
             </div>
         </div>
 
-        <!-- (NEW) ADVERTISEMENT SCRIPT PLACED HERE AT THE BOTTOM OF THE FRAME -->
+        <!-- ADVERTISEMENT SCRIPT PLACED HERE AT THE BOTTOM OF THE FRAME -->
         <div id="ad-container-bottom">
             <script type="text/javascript">
                 atOptions = {
@@ -225,7 +226,7 @@
             const userInputSection = document.getElementById('userInputSection');
             const bgMusic = document.getElementById('bgMusic');
             let hasInteracted = false;
-            
+
             const fireworksContainer = document.getElementById('fireworks-container');
             const numFireworks = 3;
             const colors = ['#FFD700', '#FF4500', '#ADFF2F', '#FF69B4', '#00FFFF', '#FFF'];
@@ -234,15 +235,15 @@
                 const firework = document.createElement('div');
                 firework.className = 'firework';
                 const duration = 2.5 + Math.random() * 2;
-                
+
                 firework.style.setProperty('--x-pos', (15 + Math.random() * 70) + '%');
                 firework.style.setProperty('--duration', duration + 's');
                 firework.style.setProperty('--delay', (Math.random() * duration) + 's');
-                
+
                 const explosion = document.createElement('div');
                 explosion.className = 'explosion';
-                
-                const numParticles = 25; 
+
+                const numParticles = 25;
                 for(let j = 0; j < numParticles; j++) {
                     const particle = document.createElement('div');
                     particle.className = 'particle';
@@ -252,7 +253,7 @@
                     particle.style.setProperty('--delay', (Math.random() * duration) + 's');
                     explosion.appendChild(particle);
                 }
-                
+
                 firework.appendChild(explosion);
                 fireworksContainer.appendChild(firework);
             }
@@ -265,7 +266,7 @@
                 const sender = decodeURIComponent(fromName.replace(/\+/g, ' '));
                 const sibling = toName ? decodeURIComponent(toName.replace(/\+/g, ' ')) : null;
                 let message;
-                
+
                 if (sibling) {
                     message = `यह संदेश ${sender} की तरफ से ${sibling} के लिए है:\n\nतुम्हें ढेर सारा प्यार और हमेशा रक्षा करने का वादा। रक्षा बंधन की बहुत-बहुत शुभकामनाएं!`;
                 } else {
@@ -291,7 +292,7 @@
             };
             document.body.addEventListener('click', startMusicOnInteraction);
             document.body.addEventListener('touchstart', startMusicOnInteraction);
-            
+
             createWishBtn.addEventListener('click', () => {
                 const senderName = senderNameInput.value.trim();
                 if (!senderName) { alert('कृपया अपना नाम लिखें!'); return; }
